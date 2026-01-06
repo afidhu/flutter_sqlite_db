@@ -61,6 +61,20 @@ class _TodoScreenState extends State<TodoScreen> {
                         return ListTile(
                           leading:CircleAvatar(child: Text("${index+1}"),),
                           title: Text(data['todo'].toString()),
+                          trailing: PopupMenuButton(
+                            onSelected: (val){
+                              if(val == "delete"){
+                                deleteTodo(data['id']).then((onValue)=> readTodo());
+                                setState(() {});
+                              }
+                            },
+                              itemBuilder: (context){
+                                return [
+                                  PopupMenuItem(value: "delete", child:  Icon(Icons.delete)),
+                                  PopupMenuItem(value: "edit",child:Icon(Icons.edit)),
+                                ];
+                              }
+                          ),
                         );
                       }
                   );

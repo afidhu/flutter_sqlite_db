@@ -30,9 +30,9 @@ Future<TodoModel> updateTodo(List id, TodoModel todos) async{
 
 // delete
 
-Future<void> deleteTodo( List id) async{
+Future<void> deleteTodo( int id) async{
   final db = await todoDatabase();
-  db.delete("todo_tb", where: "id =?", whereArgs: id);
+  db.delete("todo_tb", where: "id =?", whereArgs: [id]);
   // return id;
 }
 
